@@ -1,0 +1,28 @@
+//make .aside and .main flex containers
+//make .aside 30% width
+//make .main 70% width
+//give .aside and .main 20px padding
+//make .aside and .main box-sizing border-box
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 20px;
+}
+
+.aside-menu {
+  width: 20%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.main-dashboard {
+  width: 80%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
