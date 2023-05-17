@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import FormInput from "../form-input/form-input.component";
@@ -16,6 +17,8 @@ const defaultFormFields = {
 const SignUpForm = ({ user, setUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { first_name, email, password, confirmPassword } = formFields;
+
+  const navigate = useNavigate();
 
   console.log(formFields);
 
@@ -38,6 +41,10 @@ const SignUpForm = ({ user, setUser }) => {
           const signedUpUser = data.data[0];
           setUser(signedUpUser);
           console.log(user);
+          if (user.id) {
+            console.log("redirecting to dashboard");
+            navigate("/dashboard");
+          }
         });
     } catch (error) {
       console.log(error);
