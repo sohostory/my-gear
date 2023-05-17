@@ -13,11 +13,11 @@ const Navigation = () => {
           <img src={camera} className="logo" />
         </Link>
         <div className="nav-links-container">
-          <Link to="/sign-in" className="nav-link">
+          <Link to="/authentication" className="nav-link">
             SIGN IN
           </Link>
-          <Link to="/register" className="nav-link">
-            REGISTER
+          <Link to="/dashboard" className="nav-link">
+            DASHBOARD
           </Link>
         </div>
       </nav>
