@@ -11,7 +11,7 @@ const defaultFormFields = {
   password: "",
 };
 
-const SignInForm = ({ user }) => {
+const SignInForm = ({ user, setUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -28,9 +28,10 @@ const SignInForm = ({ user }) => {
         .then((data) => {
           console.log("data", data.data[0]);
           const loggedUser = data.data[0];
-          user.id = loggedUser.id;
-          user.first_name = loggedUser.first_name;
-          user.email = loggedUser.email;
+          setUser(loggedUser);
+          // user.id = loggedUser.id;
+          // user.first_name = loggedUser.first_name;
+          // user.email = loggedUser.email;
           console.log(user);
         });
     } catch (error) {

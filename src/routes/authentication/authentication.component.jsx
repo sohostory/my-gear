@@ -7,7 +7,7 @@ const Authentication = ({ user, setUser }) => {
   return (
     <div className="authentication-container">
       <SignInForm user={user} setUser={setUser} />
-      <SignUpForm />
+      <SignUpForm user={user} setUser={setUser} />
     </div>
   );
 };

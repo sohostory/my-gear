@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -6,15 +7,15 @@ import Button from "../button/button.component";
 import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
-  displayName: "",
+  first_name: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
+const SignUpForm = ({ user, setUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { displayName, email, password, confirmPassword } = formFields;
+  const { first_name, email, password, confirmPassword } = formFields;
 
   console.log(formFields);
 
@@ -27,6 +28,19 @@ const SignUpForm = () => {
     if (password !== confirmPassword) {
       alert("password does not match");
       return;
+    }
+
+    try {
+      axios
+        .post("http://localhost:4000/api/register", formFields)
+        .then((data) => {
+          // console.log("data", data);
+          const signedUpUser = data.data[0];
+          setUser(signedUpUser);
+          console.log(user);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -41,23 +55,13 @@ const SignUpForm = () => {
       <span>Sign Up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label="Display Name"
+          label="First Name"
           type="text"
           required
           onChange={handleChange}
-          name="displayName"
-          value={displayName}
+          name="first_name"
+          value={first_name}
         />
-
-        {/* <FormInput
-          label="Display Name"
-          inputOptions= {{
-            type:'text',
-          required: true,
-          onChange:handleChange,
-          name:"displayName",
-          value:displayName}}
-        /> */}
 
         <FormInput
           label="Email"

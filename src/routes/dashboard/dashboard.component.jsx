@@ -4,8 +4,7 @@ import "./dashboard.styles.scss";
 
 const Dashboard = ({ user }) => {
   return (
-    console.log(user),
-    (
+    user.id && (
       <div className="dashboard">
         <aside className="aside-menu">
           <h1>aside</h1>
