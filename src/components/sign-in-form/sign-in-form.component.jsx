@@ -29,20 +29,24 @@ const SignInForm = ({ user, setUser }) => {
       axios
         .post("http://localhost:4000/api/signin", formFields)
         .then((data) => {
-          console.log("data", data.data[0]);
-          const loggedUser = data.data[0];
-          setUser(loggedUser);
+          // console.log("data", data.data[0]);
+          const logedInUser = data.data[0];
+
+          // console.log("loggedUser", loggedUser);
+          setUser(logedInUser);
+          if (logedInUser.id) {
+            console.log("redirecting to dashboard");
+            navigate("/dashboard");
+          } else {
+            console.log("error logging in");
+          }
           // user.id = loggedUser.id;
           // user.first_name = loggedUser.first_name;
           // user.email = loggedUser.email;
-          console.log(user);
-          if (user.id) {
-            console.log("redirecting to dashboard");
-            navigate("/dashboard");
-          }
+          // console.log("user after set", user);
         });
     } catch (error) {
-      console.log(error);
+      alert("Error signing in");
     }
   };
 
