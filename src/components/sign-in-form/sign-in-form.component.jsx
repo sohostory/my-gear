@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import FormInput from "../form-input/form-input.component";
+import FormInput from "../form/form-input/form-input.component";
 import Button from "../button/button.component";
 
 import "./sign-in-form.styles.scss";
+
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const defaultFormFields = {
   email: "",
@@ -26,25 +28,23 @@ const SignInForm = ({ user, setUser }) => {
     event.preventDefault();
     console.log("button pushed");
     try {
-      axios
-        .post("http://localhost:4000/api/signin", formFields)
-        .then((data) => {
-          // console.log("data", data.data[0]);
-          const logedInUser = data.data[0];
+      axios.post(`${serverAddress}/api/signin`, formFields).then((data) => {
+        // console.log("data", data.data[0]);
+        const logedInUser = data.data[0];
 
-          // console.log("loggedUser", loggedUser);
-          setUser(logedInUser);
-          if (logedInUser.id) {
-            console.log("redirecting to dashboard");
-            navigate("/dashboard");
-          } else {
-            console.log("error logging in");
-          }
-          // user.id = loggedUser.id;
-          // user.first_name = loggedUser.first_name;
-          // user.email = loggedUser.email;
-          // console.log("user after set", user);
-        });
+        // console.log("loggedUser", loggedUser);
+        setUser(logedInUser);
+        if (logedInUser.id) {
+          console.log("redirecting to dashboard");
+          navigate("/dashboard/main");
+        } else {
+          console.log("error logging in");
+        }
+        // user.id = loggedUser.id;
+        // user.first_name = loggedUser.first_name;
+        // user.email = loggedUser.email;
+        // console.log("user after set", user);
+      });
     } catch (error) {
       alert("Error signing in");
     }

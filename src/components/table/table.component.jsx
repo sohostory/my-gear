@@ -43,7 +43,7 @@ const Table = ({ theadData, tbodyData }) => {
   });
 
   const sum = sortedData.reduce(
-    (total, row) => total + parseFloat(row.price),
+    (total, row) => total + parseFloat(row["Purchase Price"]),
     0
   );
 

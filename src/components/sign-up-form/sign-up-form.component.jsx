@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import FormInput from "../form-input/form-input.component";
+import FormInput from "../form/form-input/form-input.component";
 import Button from "../button/button.component";
 
 import "./sign-up-form.styles.scss";
+
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const defaultFormFields = {
   first_name: "",
@@ -34,18 +36,16 @@ const SignUpForm = ({ user, setUser }) => {
     }
 
     try {
-      axios
-        .post("http://localhost:4000/api/register", formFields)
-        .then((data) => {
-          // console.log("data", data);
-          const signedUpUser = data.data[0];
-          setUser(signedUpUser);
-          console.log(user);
-          if (user.id) {
-            console.log("redirecting to dashboard");
-            navigate("/dashboard");
-          }
-        });
+      axios.post(`${serverAddress}/api/register`, formFields).then((data) => {
+        // console.log("data", data);
+        const signedUpUser = data.data[0];
+        setUser(signedUpUser);
+        console.log(user);
+        if (user.id) {
+          console.log("redirecting to dashboard");
+          navigate("/dashboard/add-equipment");
+        }
+      });
     } catch (error) {
       console.log(error);
     }

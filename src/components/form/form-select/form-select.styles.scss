@@ -1,0 +1,47 @@
+.group {
+  position: relative;
+  margin: 45px 0;
+
+  .form-select {
+    background: none;
+    background-color: white;
+    color: grey;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid grey;
+    margin: 25px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ .form-select-label {
+      // Adjust styles for label when select input is focused
+      top: -14px;
+      font-size: 12px;
+      color: black;
+    }
+  }
+
+  .form-select-label {
+    color: grey;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+
+    &.shrink {
+      // Adjust styles for label when select input has a value
+      top: -14px;
+      font-size: 12px;
+      color: black;
+    }
+  }
+}

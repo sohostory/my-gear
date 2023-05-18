@@ -2,10 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import Navigation from "./routes/navigation/navigation.component";
-import SignIn from "./routes/sign-in/sign-in.component";
-import Register from "./routes/register/register.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
 import Authentication from "./routes/authentication/authentication.component";
+import SideMenu from "./components/side-menu/side-menu.component";
+import AddEquipmentForm from "./components/add-equipment-form/add-equipment-form.compnent";
 
 import "./App.css";
 
@@ -21,13 +21,21 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigation />}>
+      <Route path="/" element={<Navigation user={user} setUser={setUser} />}>
         <Route
           path="/"
           element={<Authentication user={user} setUser={setUser} />}
         />
-        {/* <Route path="/register" element={<Register />} /> */}
-        <Route path="/dashboard" element={<Dashboard user={user} />} />
+
+        {/* DASHBOARD */}
+
+        <Route path="/dashboard" element={<SideMenu />}>
+          <Route path="/dashboard/main" element={<Dashboard user={user} />} />
+          <Route
+            path="/dashboard/add-equipment"
+            element={<AddEquipmentForm user={user} />}
+          />
+        </Route>
       </Route>
     </Routes>
   );

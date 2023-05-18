@@ -5,6 +5,9 @@ import Table from "../../components/table/table.component";
 import TableLinks from "../../components/table-links/table-links.component";
 
 import "./dashboard.styles.scss";
+import AddEquipmentForm from "../../components/add-equipment-form/add-equipment-form.compnent";
+
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const Dashboard = ({ user }) => {
   const [equipmentData, setEquipmentData] = useState([]);
@@ -15,7 +18,7 @@ const Dashboard = ({ user }) => {
 
   const loadEquipmentData = () => {
     axios
-      .get(`http://localhost:4000/api/equipment/${user.id}`)
+      .get(`${serverAddress}/api/equipment/${user.id}`)
       .then((response) => {
         setEquipmentData(response.data[0]);
       })
@@ -32,13 +35,11 @@ const Dashboard = ({ user }) => {
   };
 
   return (
-    <div className="dashboard">
-      <aside className="aside-menu">
-        <TableLinks />
-      </aside>
+    <div className="dashboard-main">
       <main className="main-dashboard">
         <h3>Dashboard</h3>
         <Table theadData={getHeadings()} tbodyData={equipmentData} />
+        <AddEquipmentForm user={user} />
       </main>
     </div>
   );
