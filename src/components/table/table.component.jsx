@@ -1,10 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./table.styles.scss";
 
-const Table = ({ theadData, tbodyData }) => {
+const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
+
+const Table = ({ user }) => {
+  const [equipmentData, setEquipmentData] = useState([]);
+
   const [filterValue, setFilterValue] = useState("");
   const [sortKey, setSortKey] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
+
+  console.log("user loaded", user);
+
+  useEffect(() => {
+    loadEquipmentData();
+  }, []);
+
+  const loadEquipmentData = () => {
+    axios
+      .get(`${serverAddress}/api/equipment/${user.id}`)
+      .then((response) => {
+        setEquipmentData(response.data[0]);
+      })
+      .catch((error) => {
+        console.log("error while getting data", error);
+      });
+  };
+
+  const getHeadings = () => {
+    if (equipmentData.length > 0) {
+      return Object.keys(equipmentData[0]);
+    }
+    return [];
+  };
 
   const handleFilterChange = (event) => {
     setFilterValue(event.target.value);
@@ -23,7 +52,7 @@ const Table = ({ theadData, tbodyData }) => {
     }
   };
 
-  const filteredData = tbodyData.filter((row) =>
+  const filteredData = equipmentData.filter((row) =>
     Object.values(row).some((value) =>
       String(value).toLowerCase().includes(filterValue.toLowerCase())
     )
@@ -58,7 +87,7 @@ const Table = ({ theadData, tbodyData }) => {
       <table>
         <thead>
           <tr>
-            {theadData.map((heading) => (
+            {getHeadings().map((heading) => (
               <th key={heading} onClick={(e) => handleSort(e, heading)}>
                 {heading}
               </th>
@@ -69,7 +98,7 @@ const Table = ({ theadData, tbodyData }) => {
           {sortedData.map((row, index) => {
             return (
               <tr key={index}>
-                {theadData.map((key, index) => {
+                {getHeadings().map((key, index) => {
                   return <td key={row[key]}>{row[key]}</td>;
                 })}
               </tr>
@@ -77,7 +106,7 @@ const Table = ({ theadData, tbodyData }) => {
           })}
         </tbody>
       </table>
-      <p>Total Value: $ {sum.toFixed(2)}</p>
+      <h4>Total Value: $ {sum.toFixed(2)}</h4>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Navigation from "./routes/navigation/navigation.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
 import Authentication from "./routes/authentication/authentication.component";
 import SideMenu from "./components/side-menu/side-menu.component";
+import Table from "./components/table/table.component";
 import AddEquipmentForm from "./components/add-equipment-form/add-equipment-form.compnent";
 
 import "./App.css";
@@ -30,11 +31,13 @@ function App() {
         {/* DASHBOARD */}
 
         <Route path="/dashboard" element={<SideMenu />}>
-          <Route path="/dashboard/main" element={<Dashboard user={user} />} />
-          <Route
-            path="/dashboard/add-equipment"
-            element={<AddEquipmentForm user={user} />}
-          />
+          <Route path="/dashboard/" element={<Dashboard />}>
+            <Route path="/dashboard/main" element={<Table user={user} />} />
+            <Route
+              path="/dashboard/add-equipment"
+              element={<AddEquipmentForm user={user} />}
+            />
+          </Route>
         </Route>
       </Route>
     </Routes>

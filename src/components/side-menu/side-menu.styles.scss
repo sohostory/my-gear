@@ -12,5 +12,16 @@
     border: 1px solid grey;
     border-radius: 5px;
     margin-right: 10px;
+
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 }

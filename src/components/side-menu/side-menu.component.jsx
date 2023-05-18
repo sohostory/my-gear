@@ -17,13 +17,13 @@ const SideMenu = () => {
         <div className="side-menu__body">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="/dashboard/main">Home</a>
             </li>
             <li>
-              <a href="#">About Us</a>
+              <a href="/dashboard/add-equipment">Add Equipment</a>
             </li>
             <li>
-              <a href="#">Contact Us</a>
+              <a href="">Update Equipment</a>
             </li>
           </ul>
         </div>
