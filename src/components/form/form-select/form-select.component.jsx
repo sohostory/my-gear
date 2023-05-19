@@ -20,62 +20,49 @@ const FormSelect = ({ label, defaultValue, ...otherProps }) => {
       .then((response) => {
         setSelectData(response.data[0]);
         console.log("response", response.data[0]);
-
-        // if (defaultValue) {
-        //   const defaultOption = response.data[0].find(
-        //     (option) => option.name == defaultValue
-        //   );
-        //   if (defaultOption) {
-        //     setSelectedValue(defaultOption.name);
-        //   }
-        // }
       })
       .catch((error) => {
         console.log("error while getting data", error);
       });
   };
 
-  // useEffect(() => {
-  //   if (defaultValue && selectData.length) {
-  //     const defaultOption = selectData.find(
-  //       (option) => option.id === defaultValue
-  //     );
-
-  //     if (defaultOption) {
-  //       setSelectedValue(defaultOption.id);
-  //     }
-  //   }
-  // }, [defaultValue, selectData]);
-
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
+    console.log("target", event.target.value);
   };
 
+  if (defaultValue) {
+    return (
+      <div className="group">
+        <select
+          className="form-select"
+          value={defaultValue}
+          onChange={handleChange}
+        >
+          <option value="" disabled hidden className="form-select-label">
+            Select {label}
+          </option>
+          {selectData.map((option) => (
+            <option key={option.id} value={option.name}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
   return (
     <div className="group">
-      <select
-        className="form-select"
-        value={selectedValue}
-        onChange={handleChange}
-      >
+      <select className="form-select" value="" onChange={handleChange}>
         <option value="" disabled hidden className="form-select-label">
           Select {label}
         </option>
         {selectData.map((option) => (
-          <option key={option.id} value={option.id}>
+          <option key={option.id} value={option.name}>
             {option.name}
           </option>
         ))}
       </select>
-      {/* {label && (
-        <label
-          className={`${
-            otherProps.value.length ? "shrink" : ""
-          } form-select-label`}
-        >
-          {label}
-        </label>
-      )} */}
     </div>
   );
 };
