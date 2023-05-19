@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,31 +17,31 @@ const defaultFormFields = {
   serial_number: "",
   purchase_date: "",
   price: "",
-  warraty_expire_date: "",
+  warranty_expire_date: "",
   store_id: "",
-  insurance_comapny_id: "",
-  equipment_type_id: "",
+  insurance_id: "",
+  type_id: "",
   user_id: "",
 };
 
 const AddEquipmentForm = ({ user }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const {
-    user_id,
     brand_id,
     model,
     serial_number,
     purchase_date,
     price,
-    warraty_expire_date,
+    warranty_expire_date,
     store_id,
     insurance_id,
     type_id,
+    user_id,
   } = formFields;
 
   const navigate = useNavigate();
-
-  // console.log(formFields);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -51,22 +51,25 @@ const AddEquipmentForm = ({ user }) => {
     event.preventDefault();
 
     try {
+      setFormFields({ ...formFields, user_id: user.id });
+
       axios
         .post(`${serverAddress}/api/add-equipment`, formFields)
         .then((data) => {
-          console.log("add equipment data", data);
           resetFormFields();
+          setSuccessMessage("Equipment added successfully!");
         });
     } catch (error) {
       console.log(error);
+      setErrorMessage("Error adding equipment: please try again.");
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
+    setFormFields({ ...formFields, [name]: value, user_id: user.id });
   };
-
+  console.log("user before return", user);
   return (
     <div className="sign-up-container">
       <h2>Purchased new equipment?</h2>
@@ -126,7 +129,7 @@ const AddEquipmentForm = ({ user }) => {
           required
           onChange={handleChange}
           name="warranty_expire_date"
-          value={warraty_expire_date}
+          value={warranty_expire_date}
         />
         <FormSelect
           label="Store"
@@ -148,6 +151,8 @@ const AddEquipmentForm = ({ user }) => {
 
         <Button type="submit">Add Equpiment</Button>
       </form>
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };

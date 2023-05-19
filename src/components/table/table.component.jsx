@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./table.styles.scss";
 
@@ -11,6 +12,8 @@ const Table = ({ user }) => {
   const [sortKey, setSortKey] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
 
+  const navigate = useNavigate();
+
   console.log("user loaded", user);
 
   useEffect(() => {
@@ -19,9 +22,11 @@ const Table = ({ user }) => {
 
   const loadEquipmentData = () => {
     axios
-      .get(`${serverAddress}/api/equipment/${user.id}`)
+      .get(`${serverAddress}/api/equipment/user/${user.id}`)
       .then((response) => {
         setEquipmentData(response.data[0]);
+        console.log("response", response.data[0]);
+        console.log("user inside load", user);
       })
       .catch((error) => {
         console.log("error while getting data", error);
@@ -33,6 +38,10 @@ const Table = ({ user }) => {
       return Object.keys(equipmentData[0]);
     }
     return [];
+  };
+
+  const handleRowClick = (serial) => {
+    navigate(`/dashboard/edit-equipment/${serial}`);
   };
 
   const handleFilterChange = (event) => {
@@ -97,9 +106,17 @@ const Table = ({ user }) => {
         <tbody>
           {sortedData.map((row, index) => {
             return (
-              <tr key={index}>
+              <tr
+                key={index}
+                onClick={() => handleRowClick(row["Serial Number"])}
+              >
                 {getHeadings().map((key, index) => {
-                  return <td key={row[key]}>{row[key]}</td>;
+                  return (
+                    <td key={row[key]}>
+                      {/* <Link to={`/edit-equipment/${row.id}`}>Edit</Link> */}
+                      {row[key]}
+                    </td>
+                  );
                 })}
               </tr>
             );

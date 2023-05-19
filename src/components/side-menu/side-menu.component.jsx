@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { Fragment } from "react";
 
 import "./side-menu.styles.scss";
@@ -17,13 +17,13 @@ const SideMenu = () => {
         <div className="side-menu__body">
           <ul>
             <li>
-              <a href="/dashboard/main">Home</a>
+              <Link to="/dashboard/main">Home</Link>
             </li>
             <li>
-              <a href="/dashboard/add-equipment">Add Equipment</a>
+              <Link to="/dashboard/add-equipment">Add Equipment</Link>
             </li>
             <li>
-              <a href="">Update Equipment</a>
+              <Link to="/dashboard/update-equipment">Update Equipment</Link>
             </li>
           </ul>
         </div>

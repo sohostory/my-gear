@@ -9,7 +9,7 @@ import "./dashboard.styles.scss";
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
   // const [equipmentData, setEquipmentData] = useState([]);
 
   // useEffect(() => {
