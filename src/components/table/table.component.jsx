@@ -14,7 +14,7 @@ const Table = ({ user }) => {
 
   const navigate = useNavigate();
 
-  console.log("user loaded", user);
+  // console.log("user loaded", user);
 
   useEffect(() => {
     loadEquipmentData();
@@ -25,8 +25,8 @@ const Table = ({ user }) => {
       .get(`${serverAddress}/api/equipment/user/${user.id}`)
       .then((response) => {
         setEquipmentData(response.data[0]);
-        console.log("response", response.data[0]);
-        console.log("user inside load", user);
+        // console.log("response", response.data[0]);
+        // console.log("user inside load", user);
       })
       .catch((error) => {
         console.log("error while getting data", error);
@@ -51,8 +51,8 @@ const Table = ({ user }) => {
   const handleSort = (e, key) => {
     e.preventDefault();
 
-    console.log("key", key);
-    console.log("e", e);
+    // console.log("key", key);
+    // console.log("e", e);
     if (key === sortKey) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {

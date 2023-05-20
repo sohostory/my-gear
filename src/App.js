@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navigation from "./routes/navigation/navigation.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
 import Authentication from "./routes/authentication/authentication.component";
+import MyAccount from "./routes/my-account/my-account.component";
 import SideMenu from "./components/side-menu/side-menu.component";
 import Table from "./components/table/table.component";
 import AddEquipmentForm from "./components/add-equipment-form/add-equipment-form.compnent";
@@ -28,7 +29,10 @@ function App() {
           path="/"
           element={<Authentication user={user} setUser={setUser} />}
         />
-
+        <Route
+          path="/account"
+          element={<MyAccount user={user} setUser={setUser} />}
+        />
         {/* DASHBOARD */}
 
         <Route path="/dashboard" element={<SideMenu />}>

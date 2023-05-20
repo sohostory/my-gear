@@ -72,6 +72,7 @@ const EditEquipmentForm = ({ user }) => {
 
   return (
     <div>
+      {console.log("equipmentDataHere", equipmentData)}
       <h3>Edit Equipment</h3>
       <form onSubmit={handleSubmit}>
         <FormSelect
@@ -83,7 +84,91 @@ const EditEquipmentForm = ({ user }) => {
           value={type}
           defaultValue={type}
         />
-        <Button type="submit">Submit</Button>
+        <FormSelect
+          label="Brand"
+          type="select"
+          required
+          onChange={handleChange}
+          name="brand_id"
+          value={brand}
+          defaultValue={brand}
+        />
+
+        <FormInput
+          label="Model"
+          type="text"
+          required
+          onChange={handleChange}
+          name="model"
+          value={model}
+          defaultValue={model}
+        />
+        <FormInput
+          label="Serial Number"
+          type="text"
+          required
+          onChange={handleChange}
+          name="serial_number"
+          value={serial_number}
+          defaultValue={serial_number}
+        />
+        <FormInput
+          label="Price"
+          type="number"
+          required
+          onChange={handleChange}
+          name="price"
+          value={price}
+          defaultValue={price}
+        />
+        <FormInput
+          label="Depreciation"
+          type="number"
+          required
+          onChange={handleChange}
+          name="depreciation"
+          value={depreciation}
+          defaultValue={depreciation}
+        />
+        <FormDate
+          label="Purchase Date"
+          type="date"
+          required
+          onChange={handleChange}
+          name="date"
+          value={date}
+          defaultValue={date}
+        />
+        <FormDate
+          label="Warranty Expiration Date"
+          type="date"
+          required
+          onChange={handleChange}
+          name="warranty"
+          value={warranty}
+          defaultValue={warranty}
+        />
+        <FormSelect
+          label="Store"
+          type="select"
+          required
+          onChange={handleChange}
+          name="store_id"
+          value={store}
+          defaultValue={store}
+        />
+        <FormSelect
+          label="Insurance"
+          type="select"
+          required
+          onChange={handleChange}
+          name="insurance_id"
+          value={insurance}
+          defaultValue={insurance}
+        />
+        <Button type="submit" buttonType="inverted">
+          Update Info
+        </Button>
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
