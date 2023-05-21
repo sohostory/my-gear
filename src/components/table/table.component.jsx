@@ -6,31 +6,33 @@ import "./table.styles.scss";
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const Table = ({ user }) => {
+  const navigate = useNavigate();
+
   const [equipmentData, setEquipmentData] = useState([]);
 
   const [filterValue, setFilterValue] = useState("");
   const [sortKey, setSortKey] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
 
-  const navigate = useNavigate();
-
-  // console.log("user loaded", user);
-
   useEffect(() => {
     loadEquipmentData();
   }, []);
 
   const loadEquipmentData = () => {
-    axios
-      .get(`${serverAddress}/api/equipment/user/${user.id}`)
-      .then((response) => {
-        setEquipmentData(response.data[0]);
-        // console.log("response", response.data[0]);
-        // console.log("user inside load", user);
-      })
-      .catch((error) => {
-        console.log("error while getting data", error);
-      });
+    if (!user.id) {
+      navigate("/authentication");
+    } else {
+      axios
+        .get(`${serverAddress}/api/equipment/user/${user.id}`)
+        .then((response) => {
+          setEquipmentData(response.data[0]);
+          // console.log("response", response.data[0]);
+          // console.log("user inside load", user);
+        })
+        .catch((error) => {
+          console.log("error while getting data", error);
+        });
+    }
   };
 
   const getHeadings = () => {

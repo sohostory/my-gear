@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Navigation from "./routes/navigation/navigation.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
@@ -26,7 +26,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Navigation user={user} setUser={setUser} />}>
         <Route
-          path="/"
+          path="/authentication"
           element={<Authentication user={user} setUser={setUser} />}
         />
         <Route

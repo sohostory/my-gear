@@ -8,6 +8,12 @@ import Button from "../../components/button/button.component";
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
+const defaultFormFields = {
+  password: "",
+  newPassword: "",
+  confirmPassword: "",
+};
+
 const EditMyAccountForm = ({ user, setUser }) => {
   const [userData, setUserData] = useState({});
   const [id, setId] = useState(user.id);
@@ -15,6 +21,10 @@ const EditMyAccountForm = ({ user, setUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   let { email, first_name, password, newPassword, confirmPassword } = userData;
+
+  const resetFormFields = () => {
+    setUserData({ ...user, ...defaultFormFields });
+  };
 
   useEffect(() => {
     loadUserData();
@@ -49,11 +59,14 @@ const EditMyAccountForm = ({ user, setUser }) => {
         .put(`${serverAddress}/api/user/update`, updatedUserData)
         .then((data) => {
           console.log("after update", data);
-          const signedInUser = data.data[0];
+          const signedInUser = data.data;
           setUser(signedInUser);
+          setSuccessMessage("Your account successfully updated.");
+          resetFormFields();
         });
     } catch (error) {
       console.log(error);
+      setErrorMessage("Failed to update account. Please try again.");
     }
   };
 
@@ -116,6 +129,8 @@ const EditMyAccountForm = ({ user, setUser }) => {
           Update Account
         </Button>
       </form>
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };

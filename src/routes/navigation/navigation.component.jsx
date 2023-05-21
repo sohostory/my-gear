@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 import camera from "../../assets/camera.png";
 
@@ -12,19 +12,23 @@ const defaultUser = {
 };
 
 const Navigation = ({ user, setUser }) => {
+  const navigate = useNavigate();
+
+  console.log("user from /", user);
+
   const handleSignOut = () => {
     setUser(defaultUser);
   };
 
   const loggedInLinks = (
     <Fragment>
-      <Link to="/dashboard" className="nav-link">
+      <Link to="/dashboard/main" className="nav-link">
         DASHBOARD
       </Link>
       <Link to="/account" className="nav-link">
         MY ACCOUNT
       </Link>
-      <Link to="/" className="nav-link" onClick={handleSignOut}>
+      <Link to="/authentication" className="nav-link" onClick={handleSignOut}>
         SIGN OUT
       </Link>
     </Fragment>
@@ -35,7 +39,7 @@ const Navigation = ({ user, setUser }) => {
       <Link to="/authentication" className="nav-link">
         SIGN IN
       </Link>
-      <Link to="/dashboard" className="nav-link">
+      <Link to="/dashboard/main" className="nav-link">
         DASHBOARD
       </Link>
     </Fragment>
@@ -44,7 +48,7 @@ const Navigation = ({ user, setUser }) => {
   return (
     <Fragment>
       <nav className="navigation">
-        <Link to="/" className="logo-container">
+        <Link to="/dashboard/main" className="logo-container">
           <img src={camera} className="logo" />
         </Link>
         <div className="nav-links-container">

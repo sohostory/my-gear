@@ -27,8 +27,10 @@ const SignInForm = ({ user, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("button pushed");
-    try {
-      axios.post(`${serverAddress}/api/signin`, formFields).then((data) => {
+
+    axios
+      .post(`${serverAddress}/api/signin`, formFields)
+      .then((data) => {
         // console.log("data", data.data[0]);
         const logedInUser = data.data[0];
 
@@ -44,10 +46,11 @@ const SignInForm = ({ user, setUser }) => {
         // user.first_name = loggedUser.first_name;
         // user.email = loggedUser.email;
         // console.log("user after set", user);
+      })
+      .catch((error) => {
+        alert("Invalid email or password");
+        console.log("error signing in", error);
       });
-    } catch (error) {
-      alert("Error signing in");
-    }
   };
 
   const handleChange = (event) => {
