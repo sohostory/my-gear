@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,13 +10,14 @@ import "./sign-in-form.styles.scss";
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const defaultFormFields = {
+  id: "",
   email: "",
   password: "",
 };
 
 const SignInForm = ({ user, setUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { email, password } = formFields;
+  const { id, email, password } = formFields;
 
   const navigate = useNavigate();
 
@@ -31,21 +32,14 @@ const SignInForm = ({ user, setUser }) => {
     axios
       .post(`${serverAddress}/api/signin`, formFields)
       .then((data) => {
-        // console.log("data", data.data[0]);
         const logedInUser = data.data[0];
-
-        // console.log("loggedUser", loggedUser);
         setUser(logedInUser);
+
         if (logedInUser.id) {
-          console.log("redirecting to dashboard");
           navigate("/dashboard/main");
         } else {
           console.log("error logging in");
         }
-        // user.id = loggedUser.id;
-        // user.first_name = loggedUser.first_name;
-        // user.email = loggedUser.email;
-        // console.log("user after set", user);
       })
       .catch((error) => {
         alert("Invalid email or password");

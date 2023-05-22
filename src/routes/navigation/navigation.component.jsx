@@ -14,7 +14,12 @@ const defaultUser = {
 const Navigation = ({ user, setUser }) => {
   const navigate = useNavigate();
 
-  console.log("user from /", user);
+  useEffect(() => {
+    if (!user.id) {
+      console.log("user from authentication", user);
+      navigate("/authentication");
+    }
+  }, [user, navigate]);
 
   const handleSignOut = () => {
     setUser(defaultUser);

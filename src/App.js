@@ -1,5 +1,5 @@
-import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect, useState, useLayoutEffect } from "react";
 
 import Navigation from "./routes/navigation/navigation.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
@@ -22,6 +22,12 @@ function App() {
   const [user, setUser] = useState(defaultUser);
   const { id, first_name, email } = user;
 
+  // const navigate = useNavigate();
+
+  // useLayoutEffect(() => {
+  //   navigate("/dashboard/main");
+  // }, [navigate]);
+
   return (
     <Routes>
       <Route path="/" element={<Navigation user={user} setUser={setUser} />}>
@@ -33,12 +39,14 @@ function App() {
           path="/account"
           element={<MyAccount user={user} setUser={setUser} />}
         />
+
         {/* DASHBOARD */}
 
         <Route path="/dashboard" element={<SideMenu />}>
           <Route path="/dashboard/" element={<Dashboard />}>
             <Route path="/dashboard/main" element={<Table user={user} />} />
             <Route
+              index
               path="/dashboard/add-equipment"
               element={<AddEquipmentForm user={user} />}
             />
