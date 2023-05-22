@@ -22,12 +22,6 @@ function App() {
   const [user, setUser] = useState(defaultUser);
   const { id, first_name, email } = user;
 
-  // const navigate = useNavigate();
-
-  // useLayoutEffect(() => {
-  //   navigate("/dashboard/main");
-  // }, [navigate]);
-
   return (
     <Routes>
       <Route path="/" element={<Navigation user={user} setUser={setUser} />}>

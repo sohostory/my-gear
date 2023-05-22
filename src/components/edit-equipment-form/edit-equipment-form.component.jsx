@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import FormInput from "../form/form-input/form-input.component";
 import FormSelect from "../form/form-select/form-select.component";
 import FormDate from "../form/form-date/form-date.component";
 import Button from "../button/button.component";
+
+import "./edit-equipment-form.styles.scss";
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
@@ -28,6 +30,8 @@ const EditEquipmentForm = ({ user }) => {
     store,
     insurance,
   } = equipmentData;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadEquipmentData();
@@ -62,6 +66,21 @@ const EditEquipmentForm = ({ user }) => {
       });
   };
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    axios
+      .delete(`${serverAddress}/api/delete-equipment/serial/${serial}`, {})
+      .then((response) => {
+        console.log("response", response);
+        setSuccessMessage("Equipment has been deleted.");
+        navigate("/dashboard/main");
+      })
+      .catch((error) => {
+        console.log("error", error);
+        setErrorMessage("Failed to delete equipment.");
+      });
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEquipmentData((prevData) => ({
@@ -71,9 +90,8 @@ const EditEquipmentForm = ({ user }) => {
   };
 
   return (
-    <div>
-      {console.log("equipmentDataHere", equipmentData)}
-      <h3>Edit Equipment</h3>
+    <div className="edit-equipment-container">
+      <h2>Edit Equipment</h2>
       <form onSubmit={handleSubmit}>
         <FormSelect
           label="Type"
@@ -166,9 +184,14 @@ const EditEquipmentForm = ({ user }) => {
           value={insurance}
           defaultValue={insurance}
         />
-        <Button type="submit" buttonType="inverted">
-          Update Info
-        </Button>
+        <div className="buttons-container">
+          <Button type="submit" buttonType="inverted">
+            Update Info
+          </Button>
+          <Button type="button" onClick={handleDelete}>
+            Delete Equipment
+          </Button>
+        </div>
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}

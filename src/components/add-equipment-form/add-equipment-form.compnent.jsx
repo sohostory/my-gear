@@ -51,8 +51,10 @@ const AddEquipmentForm = ({ user }) => {
     event.preventDefault();
 
     try {
-      setFormFields({ ...formFields, user_id: user.id });
-
+      // setFormFields({ ...formFields, user_id: user.id });
+      const updatedFormFields = { ...formFields, user_id: user.id };
+      setFormFields(updatedFormFields);
+      console.log("formFields", formFields);
       axios
         .post(`${serverAddress}/api/add-equipment`, formFields)
         .then((data) => {
@@ -68,10 +70,11 @@ const AddEquipmentForm = ({ user }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value, user_id: user.id });
+    console.log("formFields after change", formFields);
   };
   console.log("user before return", user);
   return (
-    <div className="sign-up-container">
+    <div className="add-equipment-container">
       <h2>Purchased new equipment?</h2>
       <span>Fill out the form below to add</span>
       <form onSubmit={handleSubmit}>
