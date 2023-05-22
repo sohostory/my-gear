@@ -55,10 +55,11 @@ const EditEquipmentForm = ({ user }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`${serverAddress}/api/equipment/serial/${serial}`, {})
+      .put(`${serverAddress}/api/equipment/serial/${serial}`, equipmentData)
       .then((response) => {
         console.log("response", response);
         setSuccessMessage("Equipment successfully updated.");
+        navigate("/dashboard/main");
       })
       .catch((error) => {
         console.log("error", error);
@@ -140,8 +141,11 @@ const EditEquipmentForm = ({ user }) => {
           defaultValue={price}
         />
         <FormInput
-          label="Depreciation"
+          label="Depreciation Rate"
           type="number"
+          min={0}
+          max={1}
+          step={0.01}
           required
           onChange={handleChange}
           name="depreciation"
