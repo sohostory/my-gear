@@ -41,7 +41,6 @@ const SignUpForm = ({ user, setUser }) => {
 
     try {
       axios.post(`${serverAddress}/api/register`, formFields).then((data) => {
-        // console.log("data", data);
         const signedUpUser = data.data[0];
         setUser(signedUpUser);
       });

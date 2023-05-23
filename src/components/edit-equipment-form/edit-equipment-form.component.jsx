@@ -69,12 +69,10 @@ const EditEquipmentForm = ({ user }) => {
     axios
       .delete(`${serverAddress}/api/delete-equipment/serial/${serial}`, {})
       .then((response) => {
-        console.log("response", response);
         setSuccessMessage("Equipment has been deleted.");
         navigate("/dashboard/main");
       })
       .catch((error) => {
-        console.log("error", error);
         setErrorMessage("Failed to delete equipment.");
       });
   };
