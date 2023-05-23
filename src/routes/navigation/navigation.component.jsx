@@ -61,6 +61,14 @@ const Navigation = ({ user, setUser }) => {
         </div>
       </nav>
       <Outlet />
+
+      {/* <footer className="footer">
+        <div className="footer__container">
+          SOHOSTORY LLC
+          <br />
+          Dallas, TX
+        </div>
+      </footer> */}
     </Fragment>
   );
 };

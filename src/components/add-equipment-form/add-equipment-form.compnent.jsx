@@ -75,85 +75,88 @@ const AddEquipmentForm = ({ user }) => {
   console.log("user before return", user);
   return (
     <div className="add-equipment-container">
-      <h2>Purchased new equipment?</h2>
-      <span>Fill out the form below to add</span>
-      <form onSubmit={handleSubmit}>
-        <FormSelect
-          label="Type"
-          type="select"
-          required
-          onChange={handleChange}
-          name="type_id"
-          value={type_id}
-        />
-        <FormSelect
-          label="Brand"
-          type="select"
-          required
-          onChange={handleChange}
-          name="brand_id"
-          value={brand_id}
-        />
-        <FormInput
-          label="Model"
-          type="text"
-          required
-          onChange={handleChange}
-          name="model"
-          value={model}
-        />
-        <FormInput
-          label="Serial Number"
-          type="text"
-          required
-          onChange={handleChange}
-          name="serial_number"
-          value={serial_number}
-        />
-        <FormDate
-          label="Purchase Date"
-          type="date"
-          required
-          onChange={handleChange}
-          name="purchase_date"
-          value={purchase_date}
-        />
-        <FormInput
-          label="Purchase Price"
-          type="number"
-          required
-          onChange={handleChange}
-          name="price"
-          value={price}
-        />
-        <FormDate
-          label="Warranty Expiration Date"
-          type="date"
-          required
-          onChange={handleChange}
-          name="warranty_expire_date"
-          value={warranty_expire_date}
-        />
-        <FormSelect
-          label="Store"
-          type="select"
-          required
-          onChange={handleChange}
-          name="store_id"
-          value={store_id}
-        />
+      <div className="form-container">
+        <h2>Purchased new equipment?</h2>
+        <span>Fill out the form below to add</span>
 
-        <FormSelect
-          label="Insurance"
-          type="select"
-          required
-          onChange={handleChange}
-          name="insurance_id"
-          value={insurance_id}
-        />
+        <form onSubmit={handleSubmit}>
+          <FormSelect
+            label="Type"
+            type="select"
+            required
+            onChange={handleChange}
+            name="type_id"
+            value={type_id}
+          />
+          <FormSelect
+            label="Brand"
+            type="select"
+            required
+            onChange={handleChange}
+            name="brand_id"
+            value={brand_id}
+          />
+          <FormInput
+            label="Model"
+            type="text"
+            required
+            onChange={handleChange}
+            name="model"
+            value={model}
+          />
+          <FormInput
+            label="Serial Number"
+            type="text"
+            required
+            onChange={handleChange}
+            name="serial_number"
+            value={serial_number}
+          />
+          <FormDate
+            label="Purchase Date"
+            type="date"
+            required
+            onChange={handleChange}
+            name="purchase_date"
+            value={purchase_date}
+          />
+          <FormInput
+            label="Purchase Price"
+            type="number"
+            required
+            onChange={handleChange}
+            name="price"
+            value={price}
+          />
+          <FormDate
+            label="Warranty Expiration Date"
+            type="date"
+            required
+            onChange={handleChange}
+            name="warranty_expire_date"
+            value={warranty_expire_date}
+          />
+          <FormSelect
+            label="Store"
+            type="select"
+            required
+            onChange={handleChange}
+            name="store_id"
+            value={store_id}
+          />
 
-        <Button type="submit">Add Equpiment</Button>
-      </form>
+          <FormSelect
+            label="Insurance"
+            type="select"
+            required
+            onChange={handleChange}
+            name="insurance_id"
+            value={insurance_id}
+          />
+
+          <Button type="submit">Add Equpiment</Button>
+        </form>
+      </div>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>

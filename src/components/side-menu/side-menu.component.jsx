@@ -22,9 +22,9 @@ const SideMenu = () => {
             <li>
               <Link to="/dashboard/add-equipment">Add Equipment</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/dashboard/update-equipment">Update Equipment</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </aside>

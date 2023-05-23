@@ -26,8 +26,6 @@ const Table = ({ user }) => {
         .get(`${serverAddress}/api/equipment/user/${user.id}`)
         .then((response) => {
           setEquipmentData(response.data[0]);
-          // console.log("response", response.data[0]);
-          // console.log("user inside load", user);
         })
         .catch((error) => {
           console.log("error while getting data", error);
@@ -90,6 +88,7 @@ const Table = ({ user }) => {
   return (
     <div>
       <input
+        className="filter-input"
         type="text"
         placeholder="Filter"
         value={filterValue}
