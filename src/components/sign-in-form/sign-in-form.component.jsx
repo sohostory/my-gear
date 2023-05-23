@@ -27,7 +27,6 @@ const SignInForm = ({ user, setUser }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("button pushed");
 
     axios
       .post(`${serverAddress}/api/signin`, formFields)
@@ -43,7 +42,7 @@ const SignInForm = ({ user, setUser }) => {
       })
       .catch((error) => {
         alert("Invalid email or password");
-        console.log("error signing in", error);
+        console.log("error signing in");
       });
   };
 

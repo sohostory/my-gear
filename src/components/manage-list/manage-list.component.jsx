@@ -30,10 +30,9 @@ const ManageList = ({ user }) => {
       })
       .then((response) => {
         setSelectData(response.data[0]);
-        console.log("response", response.data[0]);
       })
       .catch((error) => {
-        console.log("error while getting data", error);
+        console.log("error while getting data");
       });
   };
 
@@ -56,7 +55,7 @@ const ManageList = ({ user }) => {
         loadSelectData();
       })
       .catch((error) => {
-        console.log("error while getting data", error);
+        console.log("error while getting data");
         setErrorMessage("Error updating data");
       });
   };

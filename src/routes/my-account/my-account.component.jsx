@@ -34,16 +34,13 @@ const EditMyAccountForm = ({ user, setUser }) => {
     axios
       .get(`${serverAddress}/api/user/${user.id}`)
       .then((response) => {
-        console.log("response", response.data[0][0]);
         setUserData(response.data[0][0]);
       })
       .catch((error) => {
-        console.log("error while getting data", error);
         setErrorMessage("Failed to get account info.");
       });
   };
 
-  console.log("userdata", userData);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -53,19 +50,16 @@ const EditMyAccountForm = ({ user, setUser }) => {
     }
 
     try {
-      console.log("userData", userData);
       const updatedUserData = { ...userData, id };
       axios
         .put(`${serverAddress}/api/user/update`, updatedUserData)
         .then((data) => {
-          console.log("after update", data);
           const signedInUser = data.data;
           setUser(signedInUser);
           setSuccessMessage("Your account successfully updated.");
           resetFormFields();
         });
     } catch (error) {
-      console.log(error);
       setErrorMessage("Failed to update account. Please try again.");
     }
   };

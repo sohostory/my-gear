@@ -16,7 +16,6 @@ const Navigation = ({ user, setUser }) => {
 
   useEffect(() => {
     if (!user.id) {
-      console.log("user from authentication", user);
       navigate("/authentication");
     }
   }, [user, navigate]);

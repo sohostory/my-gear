@@ -41,12 +41,11 @@ const EditEquipmentForm = ({ user }) => {
     axios
       .get(`${serverAddress}/api/equipment/serial/${serial}`)
       .then((response) => {
-        console.log("response", response.data[0][0]);
         setEquipmentData(response.data[0][0]);
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error while getting data", error);
+        console.log("error while getting data");
         setErrorMessage("Failed to load equipment data.");
         setLoading(false);
       });
@@ -57,12 +56,10 @@ const EditEquipmentForm = ({ user }) => {
     axios
       .put(`${serverAddress}/api/equipment/serial/${serial}`, equipmentData)
       .then((response) => {
-        console.log("response", response);
         setSuccessMessage("Equipment successfully updated.");
         navigate("/dashboard/main");
       })
       .catch((error) => {
-        console.log("error", error);
         setErrorMessage("Failed to update equipment.");
       });
   };

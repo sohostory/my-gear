@@ -51,8 +51,6 @@ const Table = ({ user }) => {
   const handleSort = (e, key) => {
     e.preventDefault();
 
-    // console.log("key", key);
-    // console.log("e", e);
     if (key === sortKey) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {

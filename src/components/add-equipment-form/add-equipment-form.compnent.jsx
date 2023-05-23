@@ -25,7 +25,6 @@ const defaultFormFields = {
 };
 
 const AddEquipmentForm = ({ user }) => {
-  console.log("user from add ", user);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -55,7 +54,6 @@ const AddEquipmentForm = ({ user }) => {
       // setFormFields({ ...formFields, user_id: user.id });
       const updatedFormFields = { ...formFields, user_id: user.id };
       setFormFields(updatedFormFields);
-      console.log("formFields", formFields);
       axios
         .post(`${serverAddress}/api/add-equipment`, formFields)
         .then((data) => {
@@ -63,7 +61,7 @@ const AddEquipmentForm = ({ user }) => {
           setSuccessMessage("Equipment added successfully!");
         });
     } catch (error) {
-      console.log(error);
+      console.log("error has occured. please try again");
       setErrorMessage("Error adding equipment: please try again.");
     }
   };
@@ -71,9 +69,8 @@ const AddEquipmentForm = ({ user }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value, user_id: user.id });
-    console.log("formFields after change", formFields);
   };
-  console.log("user before return", user);
+
   return (
     <div className="add-equipment-container">
       <div className="form-container">

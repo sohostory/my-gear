@@ -24,7 +24,6 @@ const SignUpForm = ({ user, setUser }) => {
 
   useEffect(() => {
     if (user.id) {
-      console.log("redirecting to dashboard");
       navigate("/dashboard/add-equipment");
     }
   }, [user.id, navigate]);
@@ -47,7 +46,7 @@ const SignUpForm = ({ user, setUser }) => {
         setUser(signedUpUser);
       });
     } catch (error) {
-      console.log(error);
+      console.log("error has occured. please try again");
     }
   };
 

@@ -29,19 +29,15 @@ const FormSelect = ({
       .get(`${serverAddress}/api/select-data/${user.id}/${label}`)
       .then((response) => {
         setSelectData(response.data[0]);
-        // console.log("response", response.data[0]);
       })
       .catch((error) => {
-        console.log("error while getting data", error);
+        console.log("error while getting data");
       });
   };
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    console.log("event change select", selectedValue);
     onChange({ target: { name: name, value: event.target.value } });
-    // console.log("target", event.target.value);
-    // console.log("selectedValue after handle", selectedValue);
   };
 
   return (
