@@ -15,7 +15,6 @@ const EditEquipmentForm = ({ user }) => {
   const params = useParams();
   const { serial } = params;
   const [equipmentData, setEquipmentData] = useState({});
-  const [loading, setLoading] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const {
@@ -42,12 +41,10 @@ const EditEquipmentForm = ({ user }) => {
       .get(`${serverAddress}/api/equipment/serial/${serial}`)
       .then((response) => {
         setEquipmentData(response.data[0][0]);
-        setLoading(false);
       })
       .catch((error) => {
         console.log("error while getting data");
         setErrorMessage("Failed to load equipment data.");
-        setLoading(false);
       });
   };
 
@@ -83,6 +80,10 @@ const EditEquipmentForm = ({ user }) => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleCancel = (event) => {
+    navigate("/dashboard/main");
   };
 
   return (
@@ -174,7 +175,7 @@ const EditEquipmentForm = ({ user }) => {
             type="select"
             required
             onChange={handleChange}
-            name="store_id"
+            name="store"
             value={store}
             defaultValue={store}
           />
@@ -184,13 +185,14 @@ const EditEquipmentForm = ({ user }) => {
             type="select"
             required
             onChange={handleChange}
-            name="insurance_id"
+            name="insurance"
             value={insurance}
             defaultValue={insurance}
           />
           <div className="buttons-container">
-            <Button type="submit" buttonType="inverted">
-              Update Info
+            <Button type="submit">Update Info</Button>
+            <Button type="button" buttonType="inverted" onClick={handleCancel}>
+              Cancel
             </Button>
             <Button type="button" onClick={handleDelete}>
               Delete Equipment

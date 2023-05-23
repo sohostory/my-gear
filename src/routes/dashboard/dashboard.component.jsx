@@ -1,10 +1,6 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 import "./dashboard.styles.scss";
-
-const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
 const Dashboard = () => {
   return (

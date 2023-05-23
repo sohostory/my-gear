@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ const defaultFormFields = {
 
 const SignInForm = ({ user, setUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { id, email, password } = formFields;
+  const { email, password } = formFields;
 
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ const SignInForm = ({ user, setUser }) => {
 
         if (logedInUser.id) {
           navigate("/dashboard/main");
+          resetFormFields();
         } else {
           console.log("error logging in");
         }
@@ -74,7 +75,9 @@ const SignInForm = ({ user, setUser }) => {
           value={password}
         />
         <div className="buttons-container">
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" onClick={handleSubmit}>
+            Sign In
+          </Button>
           {/* <Button type="button" buttonType="google" onClick={handleChange}>
             Google sign in
           </Button> */}

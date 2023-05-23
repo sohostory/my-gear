@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./table.styles.scss";
 
@@ -112,8 +112,9 @@ const Table = ({ user }) => {
                 onClick={() => handleRowClick(row["Serial Number"])}
               >
                 {getHeadings().map((key, index) => {
+                  console.log(row);
                   return (
-                    <td key={row[key]}>
+                    <td className={key} key={row[key]}>
                       {/* <Link to={`/edit-equipment/${row.id}`}>Edit</Link> */}
                       {row[key]}
                     </td>
@@ -124,7 +125,7 @@ const Table = ({ user }) => {
           })}
         </tbody>
       </table>
-      <h4>Total Value: $ {sum.toFixed(2)}</h4>
+      <h4>Total Purchase Value: $ {sum.toFixed(2)}</h4>
     </div>
   );
 };

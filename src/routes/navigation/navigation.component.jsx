@@ -52,9 +52,15 @@ const Navigation = ({ user, setUser }) => {
   return (
     <Fragment>
       <nav className="navigation">
-        <Link to="/dashboard/main" className="logo-container">
-          <img src={camera} className="logo" />
-        </Link>
+        <div className="logo-container">
+          <Link to="/dashboard/main" className="logo-box">
+            <img src={camera} className="logo-img" alt="camera logo" />
+          </Link>
+          <span className="header">
+            My Gear - Photography Equipment Database
+          </span>
+        </div>
+
         <div className="nav-links-container">
           {user.id ? loggedInLinks : loggedOUtLinks}
         </div>

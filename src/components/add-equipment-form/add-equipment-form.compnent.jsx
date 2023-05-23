@@ -38,7 +38,6 @@ const AddEquipmentForm = ({ user }) => {
     store_id,
     insurance_id,
     type_id,
-    user_id,
   } = formFields;
 
   const navigate = useNavigate();
@@ -69,6 +68,10 @@ const AddEquipmentForm = ({ user }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value, user_id: user.id });
+  };
+
+  const handleCancel = (event) => {
+    navigate("/dashboard/main");
   };
 
   return (
@@ -155,8 +158,12 @@ const AddEquipmentForm = ({ user }) => {
             name="insurance_id"
             value={insurance_id}
           />
-
-          <Button type="submit">Add Equpiment</Button>
+          <div className="buttons-container">
+            <Button type="submit">Add Equpiment</Button>
+            <Button type="button" buttonType="inverted" onClick={handleCancel}>
+              Cancel
+            </Button>
+          </div>
         </form>
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}

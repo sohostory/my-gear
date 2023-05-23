@@ -5,15 +5,29 @@
   justify-content: space-between;
   margin-bottom: 25px;
   background-color: white;
+
   .logo-container {
     height: 100%;
-    width: 70px;
+    width: 600px;
     padding: 0px;
     padding-left: 20px;
-    .logo {
+    display: flex;
+
+    .logo-img {
       width: 70px;
     }
   }
+
+  .header {
+    font-size: 1.2rem;
+    align-items: center;
+    margin: auto;
+    margin-left: 10px;
+    justify-content: center;
+    font-weight: 600;
+    width: 500px;
+  }
+
   .nav-links-container {
     width: 50%;
     height: 100%;

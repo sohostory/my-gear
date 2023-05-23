@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 import Navigation from "./routes/navigation/navigation.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
@@ -21,7 +21,6 @@ const defaultUser = {
 
 function App() {
   const [user, setUser] = useState(defaultUser);
-  const { id, first_name, email } = user;
 
   return (
     <Routes>

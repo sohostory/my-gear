@@ -31,6 +31,7 @@ const SignUpForm = ({ user, setUser }) => {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -39,19 +40,22 @@ const SignUpForm = ({ user, setUser }) => {
       return;
     }
 
-    try {
-      axios.post(`${serverAddress}/api/register`, formFields).then((data) => {
+    axios
+      .post(`${serverAddress}/api/register`, formFields)
+      .then((data) => {
         const signedUpUser = data.data[0];
         setUser(signedUpUser);
+        navigate("/dashboard/list/equipment");
+      })
+      .catch((error) => {
+        console.log("error has occured. please try again");
       });
-    } catch (error) {
-      console.log("error has occured. please try again");
-    }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
+    console.log(formFields);
   };
 
   return (
@@ -95,7 +99,9 @@ const SignUpForm = ({ user, setUser }) => {
           value={confirmPassword}
         />
 
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" onClick={handleSubmit}>
+          Sign Up
+        </Button>
       </form>
     </div>
   );

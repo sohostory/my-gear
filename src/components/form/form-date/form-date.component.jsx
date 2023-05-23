@@ -1,6 +1,3 @@
-import axios from "axios";
-// import { useState, useEffect } from "react";
-
 import "./form-date.styles.scss";
 
 const FormDate = ({ label, value, ...otherProps }) => {

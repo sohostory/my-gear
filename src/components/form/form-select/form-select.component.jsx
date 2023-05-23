@@ -29,6 +29,7 @@ const FormSelect = ({
       .get(`${serverAddress}/api/select-data/${user.id}/${label}`)
       .then((response) => {
         setSelectData(response.data[0]);
+        console.log(response.data[0]);
       })
       .catch((error) => {
         console.log("error while getting data");
@@ -42,14 +43,19 @@ const FormSelect = ({
 
   return (
     <div className="group">
+      {label && (
+        <label
+          className={`${otherProps.value ? "shrink" : ""} form-input-label`}
+        >
+          {label}
+        </label>
+      )}
       <select
         className="form-select"
         value={selectedValue}
         onChange={handleChange}
       >
-        <option value="" disabled hidden className="form-select-label">
-          Select {label}
-        </option>
+        <option value="" disabled hidden className="form-select-label"></option>
         {selectData.map((option) => (
           <option key={option.id} value={option.id}>
             {option.name}
