@@ -17,14 +17,23 @@ const SideMenu = () => {
         <div className="side-menu__body">
           <ul>
             <li>
-              <Link to="/dashboard/main">Home</Link>
+              <Link to="/dashboard/main">Equipment List</Link>
             </li>
             <li>
               <Link to="/dashboard/add-equipment">Add Equipment</Link>
             </li>
-            {/* <li>
-              <Link to="/dashboard/update-equipment">Update Equipment</Link>
-            </li> */}
+            <li>
+              <Link to="/dashboard/list/brand">Brand</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/list/type">Equipment Type</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/list/store">Store</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/list/insurance">Brand</Link>
+            </li>
           </ul>
         </div>
       </aside>

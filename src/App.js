@@ -9,6 +9,7 @@ import SideMenu from "./components/side-menu/side-menu.component";
 import Table from "./components/table/table.component";
 import AddEquipmentForm from "./components/add-equipment-form/add-equipment-form.compnent";
 import EditEquipmentForm from "./components/edit-equipment-form/edit-equipment-form.component";
+import ManageList from "./components/manage-list/manage-list.component";
 
 import "./App.css";
 
@@ -47,6 +48,10 @@ function App() {
             <Route
               path="/dashboard/edit-equipment/:serial"
               element={<EditEquipmentForm user={user} />}
+            />
+            <Route
+              path="/dashboard/list/:table"
+              element={<ManageList user={user} />}
             />
           </Route>
         </Route>

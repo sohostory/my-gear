@@ -87,6 +87,8 @@ const Table = ({ user }) => {
 
   return (
     <div>
+      <h2>Equipment List</h2>
+      <p>Click on any equipment below to edit</p>
       <input
         className="filter-input"
         type="text"

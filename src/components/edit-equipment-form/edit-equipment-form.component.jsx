@@ -92,113 +92,119 @@ const EditEquipmentForm = ({ user }) => {
 
   return (
     <div className="edit-equipment-container">
-      <h2>Edit Equipment</h2>
-      <form onSubmit={handleSubmit}>
-        <FormSelect
-          label="Type"
-          type="select"
-          required
-          onChange={handleChange}
-          name="type_id"
-          value={type}
-          defaultValue={type}
-        />
-        <FormSelect
-          label="Brand"
-          type="select"
-          required
-          onChange={handleChange}
-          name="brand_id"
-          value={brand}
-          defaultValue={brand}
-        />
+      <div className="form-container">
+        <h2>Edit Equipment</h2>
+        <form onSubmit={handleSubmit}>
+          <FormSelect
+            user={user}
+            label="Type"
+            type="select"
+            required
+            onChange={handleChange}
+            name="type_id"
+            value={type}
+            defaultValue={type}
+          />
+          <FormSelect
+            user={user}
+            label="Brand"
+            type="select"
+            required
+            onChange={handleChange}
+            name="brand_id"
+            value={brand}
+            defaultValue={brand}
+          />
 
-        <FormInput
-          label="Model"
-          type="text"
-          required
-          onChange={handleChange}
-          name="model"
-          value={model}
-          defaultValue={model}
-        />
-        <FormInput
-          label="Serial Number"
-          type="text"
-          required
-          onChange={handleChange}
-          name="serial_number"
-          value={serial_number}
-          defaultValue={serial_number}
-        />
-        <FormInput
-          label="Price"
-          type="number"
-          required
-          onChange={handleChange}
-          name="price"
-          value={price}
-          defaultValue={price}
-        />
-        <FormInput
-          label="Depreciation Rate"
-          type="number"
-          min={0}
-          max={1}
-          step={0.01}
-          required
-          onChange={handleChange}
-          name="depreciation"
-          value={depreciation}
-          defaultValue={depreciation}
-        />
-        <FormDate
-          label="Purchase Date"
-          type="date"
-          required
-          onChange={handleChange}
-          name="date"
-          value={date}
-          defaultValue={date}
-        />
-        <FormDate
-          label="Warranty Expiration Date"
-          type="date"
-          required
-          onChange={handleChange}
-          name="warranty"
-          value={warranty}
-          defaultValue={warranty}
-        />
-        <FormSelect
-          label="Store"
-          type="select"
-          required
-          onChange={handleChange}
-          name="store_id"
-          value={store}
-          defaultValue={store}
-        />
-        <FormSelect
-          label="Insurance"
-          type="select"
-          required
-          onChange={handleChange}
-          name="insurance_id"
-          value={insurance}
-          defaultValue={insurance}
-        />
-        <div className="buttons-container">
-          <Button type="submit" buttonType="inverted">
-            Update Info
-          </Button>
-          <Button type="button" onClick={handleDelete}>
-            Delete Equipment
-          </Button>
-        </div>
-      </form>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <FormInput
+            label="Model"
+            type="text"
+            required
+            onChange={handleChange}
+            name="model"
+            value={model}
+            defaultValue={model}
+          />
+          <FormInput
+            label="Serial Number"
+            type="text"
+            required
+            onChange={handleChange}
+            name="serial_number"
+            value={serial_number}
+            defaultValue={serial_number}
+          />
+          <FormInput
+            label="Price"
+            type="number"
+            required
+            onChange={handleChange}
+            name="price"
+            value={price}
+            defaultValue={price}
+          />
+          <FormInput
+            label="Depreciation Rate"
+            type="number"
+            min={0}
+            max={1}
+            step={0.01}
+            required
+            onChange={handleChange}
+            name="depreciation"
+            value={depreciation}
+            defaultValue={depreciation}
+          />
+          <FormDate
+            label="Purchase Date"
+            type="date"
+            required
+            onChange={handleChange}
+            name="date"
+            value={date}
+            defaultValue={date}
+          />
+          <FormDate
+            label="Warranty Expiration Date"
+            type="date"
+            required
+            onChange={handleChange}
+            name="warranty"
+            value={warranty}
+            defaultValue={warranty}
+          />
+          <FormSelect
+            user={user}
+            label="Store"
+            type="select"
+            required
+            onChange={handleChange}
+            name="store_id"
+            value={store}
+            defaultValue={store}
+          />
+          <FormSelect
+            user={user}
+            label="Insurance"
+            type="select"
+            required
+            onChange={handleChange}
+            name="insurance_id"
+            value={insurance}
+            defaultValue={insurance}
+          />
+          <div className="buttons-container">
+            <Button type="submit" buttonType="inverted">
+              Update Info
+            </Button>
+            <Button type="button" onClick={handleDelete}>
+              Delete Equipment
+            </Button>
+          </div>
+        </form>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </div>
   );
 };

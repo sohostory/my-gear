@@ -5,8 +5,14 @@ import "./form-select.styles.scss";
 
 const serverAddress = process.env.REACT_APP_SERVER_ADDRESS;
 
-const FormSelect = ({ label, defaultValue, onChange, name, ...otherProps }) => {
-  // console.log("defaultValue", defaultValue);
+const FormSelect = ({
+  user,
+  label,
+  defaultValue,
+  onChange,
+  name,
+  ...otherProps
+}) => {
   const [selectData, setSelectData] = useState([]);
   const [selectedValue, setSelectedValue] = useState(defaultValue || "");
 
@@ -20,10 +26,10 @@ const FormSelect = ({ label, defaultValue, onChange, name, ...otherProps }) => {
 
   const loadSelectData = () => {
     axios
-      .get(`${serverAddress}/api/select-data/${label}`)
+      .get(`${serverAddress}/api/select-data/${user.id}/${label}`)
       .then((response) => {
         setSelectData(response.data[0]);
-        console.log("response", response.data[0]);
+        // console.log("response", response.data[0]);
       })
       .catch((error) => {
         console.log("error while getting data", error);

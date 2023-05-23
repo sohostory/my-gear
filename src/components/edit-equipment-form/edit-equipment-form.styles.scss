@@ -1,13 +1,26 @@
 .edit-equipment-container {
   display: flex;
-  flex-direction: column;
-  width: 380px;
+  justify-content: center;
+
+  .form-container {
+    width: 60%;
+  }
 
   h2 {
     margin: 10px 0;
   }
 
+  .form-input {
+    padding-left: 10px;
+    padding-right: 0px;
+  }
+
+  .form-date {
+    padding-left: 10px;
+  }
+
   .buttons-container {
+    display: flex;
     justify-content: space-between;
   }
 }

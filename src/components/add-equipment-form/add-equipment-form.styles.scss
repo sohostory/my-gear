@@ -6,10 +6,15 @@
     width: 60%;
   }
 
-  //   .form-select,
-  //   .form-input,
-  //   .form-date {
-  //     margin: 0px 20px;
-  //     padding-top: 0px;
-  //   }
+  .form-input {
+    padding-left: 10px;
+  }
+
+  .form-date {
+    padding-left: 10px;
+  }
+
+  .buttons-container {
+    justify-content: space-between;
+  }
 }

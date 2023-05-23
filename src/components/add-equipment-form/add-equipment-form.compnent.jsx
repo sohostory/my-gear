@@ -25,6 +25,7 @@ const defaultFormFields = {
 };
 
 const AddEquipmentForm = ({ user }) => {
+  console.log("user from add ", user);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -81,6 +82,7 @@ const AddEquipmentForm = ({ user }) => {
 
         <form onSubmit={handleSubmit}>
           <FormSelect
+            user={user}
             label="Type"
             type="select"
             required
@@ -89,6 +91,7 @@ const AddEquipmentForm = ({ user }) => {
             value={type_id}
           />
           <FormSelect
+            user={user}
             label="Brand"
             type="select"
             required
@@ -137,6 +140,7 @@ const AddEquipmentForm = ({ user }) => {
             value={warranty_expire_date}
           />
           <FormSelect
+            user={user}
             label="Store"
             type="select"
             required
@@ -146,6 +150,7 @@ const AddEquipmentForm = ({ user }) => {
           />
 
           <FormSelect
+            user={user}
             label="Insurance"
             type="select"
             required
@@ -156,9 +161,9 @@ const AddEquipmentForm = ({ user }) => {
 
           <Button type="submit">Add Equpiment</Button>
         </form>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };
