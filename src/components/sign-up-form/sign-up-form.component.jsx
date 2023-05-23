@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -22,7 +22,12 @@ const SignUpForm = ({ user, setUser }) => {
 
   const navigate = useNavigate();
 
-  console.log(formFields);
+  useEffect(() => {
+    if (user.id) {
+      console.log("redirecting to dashboard");
+      navigate("/dashboard/add-equipment");
+    }
+  }, [user.id, navigate]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -40,11 +45,6 @@ const SignUpForm = ({ user, setUser }) => {
         // console.log("data", data);
         const signedUpUser = data.data[0];
         setUser(signedUpUser);
-        console.log(user);
-        if (user.id) {
-          console.log("redirecting to dashboard");
-          navigate("/dashboard/add-equipment");
-        }
       });
     } catch (error) {
       console.log(error);
