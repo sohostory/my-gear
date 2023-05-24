@@ -28,7 +28,7 @@ const Table = ({ user }) => {
           setEquipmentData(response.data[0]);
         })
         .catch((error) => {
-          console.log("error while getting data", error);
+          console.log("error while getting data");
         });
     }
   };
@@ -112,7 +112,6 @@ const Table = ({ user }) => {
                 onClick={() => handleRowClick(row["Serial Number"])}
               >
                 {getHeadings().map((key, index) => {
-                  console.log(row);
                   return (
                     <td className={key} key={row[key]}>
                       {/* <Link to={`/edit-equipment/${row.id}`}>Edit</Link> */}

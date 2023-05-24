@@ -29,7 +29,6 @@ const FormSelect = ({
       .get(`${serverAddress}/api/select-data/${user.id}/${label}`)
       .then((response) => {
         setSelectData(response.data[0]);
-        console.log(response.data[0]);
       })
       .catch((error) => {
         console.log("error while getting data");
