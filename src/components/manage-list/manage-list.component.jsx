@@ -68,6 +68,8 @@ const ManageList = ({ user }) => {
 
   return (
     <div className="list-container">
+      <h2>Manage Categories</h2>
+      <p>Here you can manage your list for your database.</p>
       <div className="list-header">
         <table>
           <thead>

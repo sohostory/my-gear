@@ -78,9 +78,6 @@ const SignInForm = ({ user, setUser }) => {
           <Button type="submit" onClick={handleSubmit}>
             Sign In
           </Button>
-          {/* <Button type="button" buttonType="google" onClick={handleChange}>
-            Google sign in
-          </Button> */}
         </div>
       </form>
     </div>

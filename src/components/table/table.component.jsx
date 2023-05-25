@@ -114,7 +114,6 @@ const Table = ({ user }) => {
                 {getHeadings().map((key, index) => {
                   return (
                     <td className={key} key={row[key]}>
-                      {/* <Link to={`/edit-equipment/${row.id}`}>Edit</Link> */}
                       {row[key]}
                     </td>
                   );

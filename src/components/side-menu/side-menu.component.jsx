@@ -6,9 +6,6 @@ const SideMenu = () => {
     <div className="dashboard">
       <aside className="aside-menu">
         <div className="side-menu__header">
-          {/* <div className="side-menu__header__logo">
-          <img src={logo} alt="logo" />
-        </div> */}
           <div className="side-menu__header__title">
             <h3>Options</h3>
           </div>

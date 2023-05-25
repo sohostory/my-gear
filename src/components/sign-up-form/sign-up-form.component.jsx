@@ -45,9 +45,10 @@ const SignUpForm = ({ user, setUser }) => {
       .then((data) => {
         const signedUpUser = data.data[0];
         setUser(signedUpUser);
-        navigate("/dashboard/list/equipment");
+        navigate("/dashboard/list/type");
       })
       .catch((error) => {
+        alert("Account already exists");
         console.log("error has occured. please try again");
       });
   };
